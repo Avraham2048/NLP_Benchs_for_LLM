@@ -108,4 +108,19 @@ Simply execute the Jupyter Notebook (`new.ipynb`). The script will automatically
 5. Extract the scores and generate visual reports in the `/report` folder.
 
 ---
+
+## 🏆 Benchmark Results: The Impact of Preprocessing
+
+To determine the optimal way to feed these complex texts into the LLMs, we ran the benchmark under three different conditions. We wanted to see how different levels of text preprocessing impacted the models' ability to track arguments and extract data accurately. 
+
+The three runs tested were:
+1. **The Original Benchmark:** Run directly on the raw, uncut original texts.
+2. **Divided Texts (Chunking):** The same benchmark, but each text was divided into 1 to 4 smaller, logical parts to reduce the cognitive load on the context window.
+3. **Pre-processed Texts:** The texts underwent specific formatting and pre-processing before evaluation to see if structured inputs guided the models better.
+
+As shown in the charts below, **dividing the texts into smaller portions (the middle chart) yielded the highest average global scores across the board**, allowing models like Gemini 3 Pro and Claude 3.7 Sonnet to achieve peak performance.
+
+![Benchmark Results](results/result.png)
+
+---
 *Created with a passion for connecting deep architectural software structures with the timeless depth of Jewish texts.*
