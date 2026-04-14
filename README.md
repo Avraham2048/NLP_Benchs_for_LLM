@@ -1,126 +1,124 @@
-# 📜 NLP Benchmark: Evaluating LLMs on Complex Jewish Legal Texts
+# **📜 NLP Benchmark: Evaluating LLMs on Complex Jewish Legal Texts**
 
-Welcome to the **NLP Benchmark for Jewish Legal Texts**! This project provides a rigorous, automated framework to evaluate the performance of leading Large Language Models (LLMs) in understanding, analyzing, and synthesizing complex traditional Jewish texts (such as Halachic rulings, Talmudic debates, and responsa). 
+## **Project Context**
 
-Understanding these texts requires more than just translation; it demands deep contextual awareness, logical tracking of multi-tier debates, and familiarity with unique terminology. This benchmark tests whether modern AI can rise to the challenge. 🧠💡
+This project was developed by **Tsuriel Vizel** and **Avraham Guez**, under the supervision of **Oren Mishali**. It serves as an academic exploration into the capabilities of modern Artificial Intelligence when tasked with processing highly complex, dense, and historically significant literature.
 
-## ✨ Project Strengths & Academic Value
+## **📖 Introduction & Academic Motivation**
 
-While LLMs excel at standard NLP tasks, ancient and medieval legal texts present a unique frontier:
-* **High Density & Implicit Context:** Rabbinic literature often relies on deeply implicit knowledge and dense logical structures.
-* **Complex Debates:** Texts frequently weave between multiple distinct opinions, hypothetical scenarios, and conditional rulings.
-* **A Rigorous Testing Ground:** By evaluating how well an LLM extracts precise *categories* and *chains of transmission* from these texts, we push the boundaries of current AI reasoning, recall, and precision capabilities.
+This project evaluates the ability of Large Language Models (LLMs) to process complex Rabbinic legal texts. We focus on the Beit Yosef, a foundational 16th-century halachic commentary, using a structured benchmark to measure model accuracy in extracting legal debates.
 
----
+Rationale: To improve LLM performance on non-standard, dense structures, a Ground Truth (GT) dataset is required to quantify errors and guide iterative refinement of extraction prompts.
 
-## 🎯 The Task: What We Ask the LLMs to Do
+Specifically, this benchmark focuses on the **Beit Yosef** (authored by Rabbi Yosef Karo), a foundational 16th-century commentary on the Tur. The Beit Yosef is characterized by its high textual density, heavily implicit context, and intricate mapping of multi-tier halachic (Jewish legal) debates. It traces the development of practical law from Talmudic origins through medieval commentators (Rishonim), constantly weaving between distinct opinions, conditional rulings, and hypothetical scenarios.
 
-We task the LLMs with reading raw text from classical Jewish legal codes (specifically the *Tur* and its commentary, the *Beit Yosef*) and breaking them down into structured, logical components. The models must identify the core question being debated, the different Halachic categories (opinions/rulings), and the exact chain of transmission (who said what, in whose name) alongside the relevant quotation.
+### **Why extract debates (מחלוקות)?**
 
-### 📝 Example: Rejoicing on a Festival (שמחת יום טוב)
+Automated extraction of halachic debates is a core challenge in Digital Humanities. Unlike standard summarization, it requires identifying multi-tier legal arguments, mapping conflicting opinions, and tracking conditional rulings within dense, unpunctuated text. Successfully automating the extraction of these debates provides substantial value for the field of Digital Humanities: it facilitates the digitization and structural mapping of centuries of complex legal reasoning.
 
-To understand the complexity, let's look at a translated example from our dataset.
+From an AI and Natural Language Processing perspective, it provides a rigorous evaluation environment to push the boundaries of an LLM's reasoning, context-retention, and information-extraction capabilities across specialized, non-standard text structures.
 
-**The Raw Input (Origin Text):**
-> **Tur:** Rambam wrote: A person is obligated to be happy and of good heart on a festival... and the men eat meat and drink wine...
-> **Beit Yosef:** ...Regarding what our Rabbi wrote that men eat meat and drink wine, the Rambam concludes that there is no joy except with meat, and no joy except with wine. But in the Talmud... it is taught that nowadays when the Temple does not exist, there is no joy except with wine... Thus, one must wonder about the Rambam why he required both eating meat and drinking wine, since the Baraita implies that wine is sufficient without meat.
+## **🏗️ Project Overview**
 
-**The Expected Output (Ground Truth):**
-The LLM is expected to parse this narrative flow into the following strict hierarchy:
+The project is built upon three main pillars:
 
-* **# Question:** How do men rejoice on a festival nowadays?
-    * **## Category 1:** By eating meat and drinking wine.
-        * `- Tur >> Rambam:` "and the men eat meat and drink wine"
-        * `- Beit Yosef >> Rambam:` "Rambam concludes that there is no joy except with meat, and no joy except with wine"
-    * **## Category 2:** Drinking wine without meat is sufficient.
-        * `- Beit Yosef:` "which implies that wine is sufficient without meat"
+1. **The Benchmark Dataset:** A curated collection of original textual excerpts alongside an expert-annotated "Ground Truth" (GT) parsing for each.  
+2. **LLM Execution Pipeline:** A systematic process to prompt various state-of-the-art models (such as Claude 3.5 Sonnet, Gemini 1.5 Pro, etc.) to extract and format the debates from the raw texts.  
+3. **LLM-as-a-Judge Evaluation:** An automated grading system where an advanced LLM compares the generated outputs against our Ground Truth using a strict, multi-dimensional rubric.
 
-As you can see, the model must differentiate between what the *Tur* quotes from the *Rambam*, and the *Beit Yosef's* independent analytical conclusion based on the Talmud.
+## **📊 The Benchmark: Structure & Methodology**
 
----
+To effectively measure LLM performance, we constructed a dedicated benchmark dataset comprising **31 distinct halachic debates** (extracted from 18 original source files).
 
-## ⚙️ How It Works: The Methodology
+* **The Source Files:** Located in the [./origins](./origins) directory. These are raw .txt files containing the original Hebrew texts of the Tur and Beit Yosef. (Note: Many files contain multiple distinct debates, indicated by the bracketed number in the filename, e.g., \[4\]).  
+* **The Ground Truth (GT):** Located in the [./reco_gt](./reco_gt) directory. These .txt files contain the expected output, structured in a hierarchical Markdown format to allow for standardized parsing and evaluation.
 
-Our highly automated **"LLM-as-a-Judge" pipeline** executes a three-stage process to ensure fair and accurate evaluation:
+### **Annotation Methodology**
 
-### 1. Generation (Inference) 🤖
-We feed the original Hebrew/Aramaic source texts into several state-of-the-art models (including Claude 3.5 Sonnet, Claude 3.5 Haiku, Claude 3.7 Sonnet, Gemini 3 Pro, and Gemini 3 Flash). Using a standardized prompt, the models are tasked with extracting the core legal opinions, chains of transmission, and relevant quotes.
+The Ground Truth was established by the researchers utilizing domain expertise in Rabbinic literature. For each source text, we analyzed the halachic discourse, identified the core subject of the debate, categorized the different approaches (e.g., "מחמירים", "מקילין"), and formally mapped each specific Rabbinic authority (e.g., "הרמב"ם", "רש"י") to their respective category. This process creates an objective, expert-annotated gold standard against which the LLMs are measured.
 
-### 2. Evaluation (LLM-as-a-Judge) ⚖️
-Manually grading complex textual analysis is highly subjective and time-consuming. Instead, we use an advanced reasoning model (e.g., `Gemini-3-Pro-Preview`) as an objective judge. The evaluator compares the generated response against a human-verified **Ground Truth (GT)**. 
+## **🔍 Illustrative Example**
 
-The judge uses a principle of **Semantic Equivalence** (e.g., treating "forbidden" and "must not do" as identical) but demands **Strict Structural Accuracy** for the chains of transmission. 
+To understand the complexity of the task, let us examine a brief example of how a text is processed into a structured debate format.
 
-The judge outputs a standardized array of 5 numeric scores `[Title, Cat_Precision, Cat_Recall, Op_Precision, Op_Recall]` based on the following rubric:
+### **1\. The Source Text (Origin)**
 
-1.  🏷️ **Title Match (0-100):** A semantic similarity score comparing the model's generated question to the GT question.
-2.  🎯 **Category Precision:** Did the model invent any halachic rulings? (True Positives / Total Categories Generated).
-3.  🔄 **Category Recall:** Did the model find all the halachic rulings present in the text? (True Positives / Total Categories in GT).
-4.  🎯 **Opinion (Chain) Precision:** Within the correct categories, did the model build the exact, accurate chain of rabbis (e.g., `Tur >> Beit Yosef`, not just `Tur`) without adding false links?
-5.  🔄 **Opinion (Chain) Recall:** Did the model successfully identify every individual chain of transmission mapped in the GT?
+Consider a text discussing the laws of Yom Tov (Festivals):
 
-### 3. Analysis & Reporting 📊
-The pipeline automatically parses the evaluation files, extracts the 5-number arrays via regex, applies appropriate weighting based on the complexity of the text, and generates comprehensive data visualizations using `pandas` and `seaborn`.
+**"ומשמע מדברי הרמב"ם דאפילו ביום טוב שני אסור... אבל רש"י התיר אפילו ביום טוב ראשון... והרא"ש פסק כרש"י אבל רק ליום טוב שני."**
 
----
+### **2\. Explanation of the Debate**
 
-## 📂 Directory Structure
+In this short excerpt, there is a clear disagreement regarding a specific action on Yom Tov.
 
-Here is a breakdown of the main folders in this repository and their roles in the pipeline:
+* **Maimonides (הרמב"ם)** is stringent, forbidding the action entirely on both the first and second days of the festival.  
+* **Rashi (רש"י)** is lenient, permitting it even on the first day.  
+* **The Rosh (הרא"ש)** takes a middle ground, agreeing with Rashi's leniency, but restricting it only to the second day.
 
-* **`/origins`** 📜
-  Contains the raw, original source texts (Halachic texts from the Tur and Beit Yosef) that serve as the input for the LLMs.
-  
-* **`/reco_gt` (Ground Truth)** ✅
-  Contains the meticulously crafted, human-verified "correct" parsing for each origin text. This is the gold standard used by the evaluator to grade the models.
+### **3\. The Expected Output (Ground Truth Format)**
 
-* **`/prompts`** 📝
-  Houses the instructional text templates used to guide the LLMs.
-  * `reco_prompts/`: The few-shot instructions telling the models exactly how to read and break down the origins.
-  * `eval_prompt/`: The strict rubric and mathematical instructions used by the "Judge LLM" to score the outputs.
+The LLM is tasked with reading the raw text and outputting a structured mapping identical to the format below. This specific format enables our evaluation script to parse and grade the results programmatically.
 
-* **`/recos` (Recommendations/Outputs)** 💬
-  The raw generated outputs produced by each LLM (Claude, Gemini, etc.) after analyzing the origin files. 
+# Title
+מחלוקת לגבי איסור הפעולה ביום טוב
 
-* **`/evals` (Evaluations)** 💯
-  The grading reports generated by the Judge LLM. Each file contains a detailed critique and the final `[5-number]` score array comparing a specific model's output to the ground truth.
+## Categories
+### מחמירים לגמרי
+* הרמב"ם
 
-* **`/report`** 📈
-  The final output destination for our data visualization. Contains generated `.png` charts (like `global_scores.png` and `category_scores.png`) that provide a beautiful, at-a-glance understanding of which model reigns supreme.
+### מקילין לגמרי
+* רש"י
 
----
+### מקילין חלקית (רק ביום טוב שני)
+* הרא"ש
 
-## 🚀 Getting Started
+## **⚖️ The Grading Rubric (LLM-as-a-Judge)**
 
-### Prerequisites
+Evaluating generated text against a Ground Truth is notoriously difficult. Traditional metrics like BLEU or ROUGE fail to capture logical accuracy. Therefore, we utilize an **LLM-as-a-Judge** approach.
+
+A high-tier model acts as the evaluator, comparing the tested model's output to the Ground Truth across 5 distinct mathematical criteria (scored from 0.0 to 1.0). **Note:** These metric names correspond exactly to the evaluation logic and the generated visual reports:
+
+1. **Title**: Accuracy of identifying the core topic/subject of the debate.  
+2. **Precisions of categories**: Did the model invent categories that do not exist in the Ground Truth? (Few hallucinations \= High Precision).  
+3. **Recall of categories**: Did the model successfully find all the categories present in the Ground Truth? (Few misses \= High Recall).  
+4. **Precisions of opinions**: Did the model assign Rabbis/Opinions to the wrong categories or invent assignments?  
+5. **Recall of opinions**: Did the model correctly place all the Rabbis/Opinions mentioned in the Ground Truth into their appropriate categories?
+
+## **📈 Interpretation of Findings**
+
+Through our visual reports (available in the [./report](./report) directory), we observe distinct variations in model capabilities:
+
+* Models demonstrate strong capabilities in identifying the overall Title of the debate.  
+* Extracting specific opinions yields mixed results depending on the model's architectural generation style and context window.  
+* **Text Preparation Impact:** We found that modern models perform significantly better when dealing with "raw, unedited text chunks" rather than heavily pre-processed or segmented texts. Providing the LLM with the organic flow of the Beit Yosef allows its internal attention mechanisms to naturally track the evolving context and implicit references (e.g., "And he said..."), which are often lost if the text is artificially divided beforehand.
+Further evaluation demonstrated that segmenting the essays into **smaller, thematic subsections** significantly **enhances** the detection performance of Large Language Models (LLMs). Consequently, this preprocessing technique yielded the superior results among the various methods tested for improving model comprehension.
+
+## **📂 Directory Structure**
+
+* [./origins](./origins): The raw, original source texts (Tur and Beit Yosef).
+* [./reco_gt](./reco_gt): The human-verified, expert-annotated correct parsing for each origin text.
+* [./prompts](./prompts): The instructional text templates used to guide the LLMs.
+* [./recos](./recos): The raw generated outputs produced by each LLM.
+* [./evals](./evals): The grading reports generated by the Judge LLM.
+* [./report](./report): Generated data visualizations (.png charts).
+
+## **🚀 Getting Started**
+
+### **Prerequisites**
+
 To run this benchmark, you will need API keys for the respective models and a standard Python data science environment:
-* `google-genai` (for Gemini models)
-* `anthropic` (for Claude models)
-* `pandas`, `seaborn`, `matplotlib` (for data processing and visualization)
-* `python-dotenv` (for managing API keys)
 
-### Running the Pipeline
-Simply execute the Jupyter Notebook (`new.ipynb`). The script will automatically:
-1. Load your API keys from a `.env` file.
-2. Iterate through the `/origins`.
-3. Call the target LLMs to generate the parsed analyses.
-4. Call the Judge LLM to evaluate the results using the stringent scoring array.
-5. Extract the scores and generate visual reports in the `/report` folder.
+* google-genai (for Gemini models)  
+* anthropic (for Claude models)  
+* pandas, seaborn, matplotlib (for data processing and visualization)  
+* python-dotenv (for managing API keys)
 
----
+### **Running the Pipeline**
 
-## 🏆 Benchmark Results: The Impact of Preprocessing
+Execute the provided Jupyter Notebook (nlp\_project.ipynb). The script will automatically:
 
-To determine the optimal way to feed these complex texts into the LLMs, we ran the benchmark under three different conditions. We wanted to see how different levels of text preprocessing impacted the models' ability to track arguments and extract data accurately. 
-
-The three runs tested were:
-1. **The Original Benchmark:** Run directly on the raw, uncut original texts.
-2. **Divided Texts (Chunking):** The same benchmark, but each text was divided into 1 to 4 smaller, logical parts to reduce the cognitive load on the context window.
-3. **Pre-processed Texts:** The texts underwent specific formatting and pre-processing before evaluation to see if structured inputs guided the models better.
-
-As shown in the charts below, **dividing the texts into smaller portions (the middle chart) yielded the highest average global scores across the board**, allowing models like Gemini 3 Pro and Claude 3.7 Sonnet to achieve peak performance.
-
-![Benchmark Results](results/result.png)
-
----
-*Created with a passion for connecting deep architectural software structures with the timeless depth of Jewish texts.*
+1. Load API keys from your .env file.  
+2. Iterate through the /origins dataset.  
+3. Prompt the target LLMs to generate parsed analyses.  
+4. Call the Judge LLM to strictly evaluate the results against the GT.  
+5. Parse the scores and output visual charts to the /report folder.
