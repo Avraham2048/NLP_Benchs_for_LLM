@@ -1,677 +1,449 @@
-{
- "cells": [
-  {
-   "cell_type": "code",
-   "execution_count": null,
-   "id": "57c0befa",
-   "metadata": {},
-   "outputs": [
-    {
-     "name": "stdout",
-     "output_type": "stream",
-     "text": [
-      "Google API Key loaded: True\n",
-      "Anthropic API Key loaded: True\n",
-      "file in C:\\Users\\julia\\Documents\\nlp-project\\code\\pp_recos\\GT[2] אכילת בשר קעג\\claude-haiku-4-5.txt already exists\n",
-      "file in C:\\Users\\julia\\Documents\\nlp-project\\code\\pp_recos\\GT[2] אכילת בשר קעג\\gemini-3-flash-preview.txt already exists\n",
-      "file in C:\\Users\\julia\\Documents\\nlp-project\\code\\pp_recos\\GT[2] אכילת בשר קעג\\gemini-3-pro-preview.txt already exists\n",
-      "file in C:\\Users\\julia\\Documents\\nlp-project\\code\\pp_recos\\GT[2] אכילת בשר קעג\\claude-sonnet-4-5.txt already exists\n",
-      "file in C:\\Users\\julia\\Documents\\nlp-project\\code\\pp_recos\\GT[2] אכילת בשר קעג\\claude-opus-4-6.txt already exists\n",
-      "file in C:\\Users\\julia\\Documents\\nlp-project\\code\\pp_recos\\[1] שירי מטלניות שח\\claude-haiku-4-5.txt already exists\n",
-      "file in C:\\Users\\julia\\Documents\\nlp-project\\code\\pp_recos\\[1] שירי מטלניות שח\\gemini-3-flash-preview.txt already exists\n",
-      "file in C:\\Users\\julia\\Documents\\nlp-project\\code\\pp_recos\\[1] שירי מטלניות שח\\gemini-3-pro-preview.txt already exists\n",
-      "file in C:\\Users\\julia\\Documents\\nlp-project\\code\\pp_recos\\[1] שירי מטלניות שח\\claude-sonnet-4-5.txt already exists\n",
-      "file in C:\\Users\\julia\\Documents\\nlp-project\\code\\pp_recos\\[1] שירי מטלניות שח\\claude-opus-4-6.txt already exists\n",
-      "file in C:\\Users\\julia\\Documents\\nlp-project\\code\\pp_recos\\[1] תקכט,א שמחת יום טוב\\claude-haiku-4-5.txt already exists\n",
-      "file in C:\\Users\\julia\\Documents\\nlp-project\\code\\pp_recos\\[1] תקכט,א שמחת יום טוב\\gemini-3-flash-preview.txt already exists\n",
-      "file in C:\\Users\\julia\\Documents\\nlp-project\\code\\pp_recos\\[1] תקכט,א שמחת יום טוב\\gemini-3-pro-preview.txt already exists\n",
-      "file in C:\\Users\\julia\\Documents\\nlp-project\\code\\pp_recos\\[1] תקכט,א שמחת יום טוב\\claude-sonnet-4-5.txt already exists\n",
-      "file in C:\\Users\\julia\\Documents\\nlp-project\\code\\pp_recos\\[1] תקכט,א שמחת יום טוב\\claude-opus-4-6.txt already exists\n",
-      "file in C:\\Users\\julia\\Documents\\nlp-project\\code\\pp_recos\\[2]חנוכה סימן תרעא\\claude-haiku-4-5.txt already exists\n",
-      "file in C:\\Users\\julia\\Documents\\nlp-project\\code\\pp_recos\\[2]חנוכה סימן תרעא\\gemini-3-flash-preview.txt already exists\n",
-      "file in C:\\Users\\julia\\Documents\\nlp-project\\code\\pp_recos\\[2]חנוכה סימן תרעא\\gemini-3-pro-preview.txt already exists\n",
-      "file in C:\\Users\\julia\\Documents\\nlp-project\\code\\pp_recos\\[2]חנוכה סימן תרעא\\claude-sonnet-4-5.txt already exists\n",
-      "file in C:\\Users\\julia\\Documents\\nlp-project\\code\\pp_recos\\[2]חנוכה סימן תרעא\\claude-opus-4-6.txt already exists\n",
-      "file in C:\\Users\\julia\\Documents\\nlp-project\\code\\pp_recos\\[3] להניח ליד האש שיח\\claude-haiku-4-5.txt already exists\n",
-      "file in C:\\Users\\julia\\Documents\\nlp-project\\code\\pp_recos\\[3] להניח ליד האש שיח\\gemini-3-flash-preview.txt already exists\n",
-      "file in C:\\Users\\julia\\Documents\\nlp-project\\code\\pp_recos\\[3] להניח ליד האש שיח\\gemini-3-pro-preview.txt already exists\n",
-      "file in C:\\Users\\julia\\Documents\\nlp-project\\code\\pp_recos\\[3] להניח ליד האש שיח\\claude-sonnet-4-5.txt already exists\n",
-      "file in C:\\Users\\julia\\Documents\\nlp-project\\code\\pp_recos\\[3] להניח ליד האש שיח\\claude-opus-4-6.txt already exists\n",
-      "file in C:\\Users\\julia\\Documents\\nlp-project\\code\\pp_recos\\ברכה לנשים על ציצית יז[1]\\claude-haiku-4-5.txt already exists\n",
-      "file in C:\\Users\\julia\\Documents\\nlp-project\\code\\pp_recos\\ברכה לנשים על ציצית יז[1]\\gemini-3-flash-preview.txt already exists\n",
-      "file in C:\\Users\\julia\\Documents\\nlp-project\\code\\pp_recos\\ברכה לנשים על ציצית יז[1]\\gemini-3-pro-preview.txt already exists\n",
-      "file in C:\\Users\\julia\\Documents\\nlp-project\\code\\pp_recos\\ברכה לנשים על ציצית יז[1]\\claude-sonnet-4-5.txt already exists\n",
-      "file in C:\\Users\\julia\\Documents\\nlp-project\\code\\pp_recos\\ברכה לנשים על ציצית יז[1]\\claude-opus-4-6.txt already exists\n",
-      "file in C:\\Users\\julia\\Documents\\nlp-project\\code\\pp_recos\\גרוף וקטום רנג [2]\\claude-haiku-4-5.txt already exists\n",
-      "file in C:\\Users\\julia\\Documents\\nlp-project\\code\\pp_recos\\גרוף וקטום רנג [2]\\gemini-3-flash-preview.txt already exists\n",
-      "file in C:\\Users\\julia\\Documents\\nlp-project\\code\\pp_recos\\גרוף וקטום רנג [2]\\gemini-3-pro-preview.txt already exists\n",
-      "file in C:\\Users\\julia\\Documents\\nlp-project\\code\\pp_recos\\גרוף וקטום רנג [2]\\claude-sonnet-4-5.txt already exists\n",
-      "file in C:\\Users\\julia\\Documents\\nlp-project\\code\\pp_recos\\גרוף וקטום רנג [2]\\claude-opus-4-6.txt already exists\n",
-      "file in C:\\Users\\julia\\Documents\\nlp-project\\code\\pp_recos\\זמן הדלקה תרעב [2]\\claude-haiku-4-5.txt already exists\n",
-      "file in C:\\Users\\julia\\Documents\\nlp-project\\code\\pp_recos\\זמן הדלקה תרעב [2]\\gemini-3-flash-preview.txt already exists\n",
-      "file in C:\\Users\\julia\\Documents\\nlp-project\\code\\pp_recos\\זמן הדלקה תרעב [2]\\gemini-3-pro-preview.txt already exists\n",
-      "file in C:\\Users\\julia\\Documents\\nlp-project\\code\\pp_recos\\זמן הדלקה תרעב [2]\\claude-sonnet-4-5.txt already exists\n",
-      "file in C:\\Users\\julia\\Documents\\nlp-project\\code\\pp_recos\\זמן הדלקה תרעב [2]\\claude-opus-4-6.txt already exists\n",
-      "file in C:\\Users\\julia\\Documents\\nlp-project\\code\\pp_recos\\חנוכה סימן  [1] תרעג\\claude-haiku-4-5.txt already exists\n",
-      "file in C:\\Users\\julia\\Documents\\nlp-project\\code\\pp_recos\\חנוכה סימן  [1] תרעג\\gemini-3-flash-preview.txt already exists\n",
-      "file in C:\\Users\\julia\\Documents\\nlp-project\\code\\pp_recos\\חנוכה סימן  [1] תרעג\\gemini-3-pro-preview.txt already exists\n",
-      "file in C:\\Users\\julia\\Documents\\nlp-project\\code\\pp_recos\\חנוכה סימן  [1] תרעג\\claude-sonnet-4-5.txt already exists\n",
-      "file in C:\\Users\\julia\\Documents\\nlp-project\\code\\pp_recos\\חנוכה סימן  [1] תרעג\\claude-opus-4-6.txt already exists\n",
-      "file in C:\\Users\\julia\\Documents\\nlp-project\\code\\pp_recos\\חנוכה תרעא [3]\\claude-haiku-4-5.txt already exists\n",
-      "file in C:\\Users\\julia\\Documents\\nlp-project\\code\\pp_recos\\חנוכה תרעא [3]\\gemini-3-flash-preview.txt already exists\n",
-      "file in C:\\Users\\julia\\Documents\\nlp-project\\code\\pp_recos\\חנוכה תרעא [3]\\gemini-3-pro-preview.txt already exists\n",
-      "file in C:\\Users\\julia\\Documents\\nlp-project\\code\\pp_recos\\חנוכה תרעא [3]\\claude-sonnet-4-5.txt already exists\n",
-      "file in C:\\Users\\julia\\Documents\\nlp-project\\code\\pp_recos\\חנוכה תרעא [3]\\claude-opus-4-6.txt already exists\n",
-      "file in C:\\Users\\julia\\Documents\\nlp-project\\code\\pp_recos\\סימן שב המנער טלית [4]\\claude-haiku-4-5.txt already exists\n",
-      "file in C:\\Users\\julia\\Documents\\nlp-project\\code\\pp_recos\\סימן שב המנער טלית [4]\\gemini-3-flash-preview.txt already exists\n",
-      "file in C:\\Users\\julia\\Documents\\nlp-project\\code\\pp_recos\\סימן שב המנער טלית [4]\\gemini-3-pro-preview.txt already exists\n",
-      "file in C:\\Users\\julia\\Documents\\nlp-project\\code\\pp_recos\\סימן שב המנער טלית [4]\\claude-sonnet-4-5.txt already exists\n",
-      "file in C:\\Users\\julia\\Documents\\nlp-project\\code\\pp_recos\\סימן שב המנער טלית [4]\\claude-opus-4-6.txt already exists\n",
-      "file in C:\\Users\\julia\\Documents\\nlp-project\\code\\pp_recos\\סעודה שלישית רצא [2]\\claude-haiku-4-5.txt already exists\n",
-      "file in C:\\Users\\julia\\Documents\\nlp-project\\code\\pp_recos\\סעודה שלישית רצא [2]\\gemini-3-flash-preview.txt already exists\n",
-      "file in C:\\Users\\julia\\Documents\\nlp-project\\code\\pp_recos\\סעודה שלישית רצא [2]\\gemini-3-pro-preview.txt already exists\n",
-      "file in C:\\Users\\julia\\Documents\\nlp-project\\code\\pp_recos\\סעודה שלישית רצא [2]\\claude-sonnet-4-5.txt already exists\n",
-      "file in C:\\Users\\julia\\Documents\\nlp-project\\code\\pp_recos\\סעודה שלישית רצא [2]\\claude-opus-4-6.txt already exists\n",
-      "file in C:\\Users\\julia\\Documents\\nlp-project\\code\\pp_recos\\ציצית ט [1]\\claude-haiku-4-5.txt already exists\n",
-      "file in C:\\Users\\julia\\Documents\\nlp-project\\code\\pp_recos\\ציצית ט [1]\\gemini-3-flash-preview.txt already exists\n",
-      "file in C:\\Users\\julia\\Documents\\nlp-project\\code\\pp_recos\\ציצית ט [1]\\gemini-3-pro-preview.txt already exists\n",
-      "file in C:\\Users\\julia\\Documents\\nlp-project\\code\\pp_recos\\ציצית ט [1]\\claude-sonnet-4-5.txt already exists\n",
-      "file in C:\\Users\\julia\\Documents\\nlp-project\\code\\pp_recos\\ציצית ט [1]\\claude-opus-4-6.txt already exists\n",
-      "file in C:\\Users\\julia\\Documents\\nlp-project\\code\\pp_recos\\שיא,א טלטול מת[1]\\claude-haiku-4-5.txt already exists\n",
-      "file in C:\\Users\\julia\\Documents\\nlp-project\\code\\pp_recos\\שיא,א טלטול מת[1]\\gemini-3-flash-preview.txt already exists\n",
-      "file in C:\\Users\\julia\\Documents\\nlp-project\\code\\pp_recos\\שיא,א טלטול מת[1]\\gemini-3-pro-preview.txt already exists\n",
-      "file in C:\\Users\\julia\\Documents\\nlp-project\\code\\pp_recos\\שיא,א טלטול מת[1]\\claude-sonnet-4-5.txt already exists\n",
-      "file in C:\\Users\\julia\\Documents\\nlp-project\\code\\pp_recos\\שיא,א טלטול מת[1]\\claude-opus-4-6.txt already exists\n",
-      "file in C:\\Users\\julia\\Documents\\nlp-project\\code\\pp_recos\\תכב,ב הלל בר''ח [1]\\claude-haiku-4-5.txt already exists\n",
-      "file in C:\\Users\\julia\\Documents\\nlp-project\\code\\pp_recos\\תכב,ב הלל בר''ח [1]\\gemini-3-flash-preview.txt already exists\n",
-      "file in C:\\Users\\julia\\Documents\\nlp-project\\code\\pp_recos\\תכב,ב הלל בר''ח [1]\\gemini-3-pro-preview.txt already exists\n",
-      "file in C:\\Users\\julia\\Documents\\nlp-project\\code\\pp_recos\\תכב,ב הלל בר''ח [1]\\claude-sonnet-4-5.txt already exists\n",
-      "file in C:\\Users\\julia\\Documents\\nlp-project\\code\\pp_recos\\תכב,ב הלל בר''ח [1]\\claude-opus-4-6.txt already exists\n",
-      "file in C:\\Users\\julia\\Documents\\nlp-project\\code\\pp_recos\\תפט.ה ספירת העומר [1]\\claude-haiku-4-5.txt already exists\n",
-      "file in C:\\Users\\julia\\Documents\\nlp-project\\code\\pp_recos\\תפט.ה ספירת העומר [1]\\gemini-3-flash-preview.txt already exists\n",
-      "file in C:\\Users\\julia\\Documents\\nlp-project\\code\\pp_recos\\תפט.ה ספירת העומר [1]\\gemini-3-pro-preview.txt already exists\n",
-      "file in C:\\Users\\julia\\Documents\\nlp-project\\code\\pp_recos\\תפט.ה ספירת העומר [1]\\claude-sonnet-4-5.txt already exists\n",
-      "file in C:\\Users\\julia\\Documents\\nlp-project\\code\\pp_recos\\תפט.ה ספירת העומר [1]\\claude-opus-4-6.txt already exists\n",
-      "file in C:\\Users\\julia\\Documents\\nlp-project\\code\\pp_recos\\‏‏ברכה שניה של קריאת שמע ס[1]\\claude-haiku-4-5.txt already exists\n",
-      "file in C:\\Users\\julia\\Documents\\nlp-project\\code\\pp_recos\\‏‏ברכה שניה של קריאת שמע ס[1]\\gemini-3-flash-preview.txt already exists\n",
-      "file in C:\\Users\\julia\\Documents\\nlp-project\\code\\pp_recos\\‏‏ברכה שניה של קריאת שמע ס[1]\\gemini-3-pro-preview.txt already exists\n",
-      "file in C:\\Users\\julia\\Documents\\nlp-project\\code\\pp_recos\\‏‏ברכה שניה של קריאת שמע ס[1]\\claude-sonnet-4-5.txt already exists\n",
-      "file in C:\\Users\\julia\\Documents\\nlp-project\\code\\pp_recos\\‏‏ברכה שניה של קריאת שמע ס[1]\\claude-opus-4-6.txt already exists\n",
-      "file in C:\\Users\\julia\\Documents\\nlp-project\\code\\pp_evals\\GT[2] אכילת בשר קעג\\pro-3_evals_the_reco_of_haiku-4.5.txt already exists\n",
-      "  Info: Found score bracket: [50, 100, 50, 43, 30]\n",
-      "file in C:\\Users\\julia\\Documents\\nlp-project\\code\\pp_evals\\GT[2] אכילת בשר קעג\\pro-3_evals_the_reco_of_flash-3.txt already exists\n",
-      "  Info: Found score bracket: [45, 60, 50, 60, 60]\n",
-      "file in C:\\Users\\julia\\Documents\\nlp-project\\code\\pp_evals\\GT[2] אכילת בשר קעג\\pro-3_evals_the_reco_of_pro-3.txt already exists\n",
-      "  Info: Found score bracket: [50, 100, 50, 70, 70]\n",
-      "file in C:\\Users\\julia\\Documents\\nlp-project\\code\\pp_evals\\GT[2] אכילת בשר קעג\\pro-3_evals_the_reco_of_sonnet-4.5.txt already exists\n",
-      "  Info: Found score bracket: [50, 75, 50, 58, 70]\n",
-      "file in C:\\Users\\julia\\Documents\\nlp-project\\code\\pp_evals\\GT[2] אכילת בשר קעג\\pro-3_evals_the_reco_of_opus-4.6.txt already exists\n",
-      "  Info: Found score bracket: [50, 75, 50, 63, 50]\n",
-      "file in C:\\Users\\julia\\Documents\\nlp-project\\code\\pp_evals\\[1] שירי מטלניות שח\\pro-3_evals_the_reco_of_haiku-4.5.txt already exists\n",
-      "  Info: Found score bracket: [100, 100, 100, 60, 60]\n",
-      "file in C:\\Users\\julia\\Documents\\nlp-project\\code\\pp_evals\\[1] שירי מטלניות שח\\pro-3_evals_the_reco_of_flash-3.txt already exists\n",
-      "  Info: Found score bracket: [100, 100, 100, 100, 100]\n",
-      "file in C:\\Users\\julia\\Documents\\nlp-project\\code\\pp_evals\\[1] שירי מטלניות שח\\pro-3_evals_the_reco_of_pro-3.txt already exists\n",
-      "  Info: Found score bracket: [100, 100, 100, 100, 100]\n",
-      "file in C:\\Users\\julia\\Documents\\nlp-project\\code\\pp_evals\\[1] שירי מטלניות שח\\pro-3_evals_the_reco_of_sonnet-4.5.txt already exists\n",
-      "  Info: Found score bracket: [100, 100, 100, 100, 100]\n",
-      "file in C:\\Users\\julia\\Documents\\nlp-project\\code\\pp_evals\\[1] שירי מטלניות שח\\pro-3_evals_the_reco_of_opus-4.6.txt already exists\n",
-      "  Info: Found score bracket: [100, 100, 100, 100, 80]\n",
-      "file in C:\\Users\\julia\\Documents\\nlp-project\\code\\pp_evals\\[1] תקכט,א שמחת יום טוב\\pro-3_evals_the_reco_of_haiku-4.5.txt already exists\n",
-      "  Info: Found score bracket: [100, 100, 100, 33, 33]\n",
-      "file in C:\\Users\\julia\\Documents\\nlp-project\\code\\pp_evals\\[1] תקכט,א שמחת יום טוב\\pro-3_evals_the_reco_of_flash-3.txt already exists\n",
-      "  Info: Found score bracket: [100, 100, 100, 67, 67]\n",
-      "file in C:\\Users\\julia\\Documents\\nlp-project\\code\\pp_evals\\[1] תקכט,א שמחת יום טוב\\pro-3_evals_the_reco_of_pro-3.txt already exists\n",
-      "  Info: Found score bracket: [100, 100, 100, 100, 100]\n",
-      "file in C:\\Users\\julia\\Documents\\nlp-project\\code\\pp_evals\\[1] תקכט,א שמחת יום טוב\\pro-3_evals_the_reco_of_sonnet-4.5.txt already exists\n",
-      "  Info: Found score bracket: [100, 67, 100, 67, 67]\n",
-      "file in C:\\Users\\julia\\Documents\\nlp-project\\code\\pp_evals\\[1] תקכט,א שמחת יום טוב\\pro-3_evals_the_reco_of_opus-4.6.txt already exists\n",
-      "  Info: Found score bracket: [0, 0, 0, 0, 0]\n",
-      "file in C:\\Users\\julia\\Documents\\nlp-project\\code\\pp_evals\\[2]חנוכה סימן תרעא\\pro-3_evals_the_reco_of_haiku-4.5.txt already exists\n",
-      "  Info: Found score bracket: [85, 60, 100, 33, 33]\n",
-      "file in C:\\Users\\julia\\Documents\\nlp-project\\code\\pp_evals\\[2]חנוכה סימן תרעא\\pro-3_evals_the_reco_of_flash-3.txt already exists\n",
-      "  Info: Found score bracket: [100, 71, 100, 50, 67]\n",
-      "file in C:\\Users\\julia\\Documents\\nlp-project\\code\\pp_evals\\[2]חנוכה סימן תרעא\\pro-3_evals_the_reco_of_pro-3.txt already exists\n",
-      "  Info: Found score bracket: [100, 71, 100, 100, 78]\n",
-      "file in C:\\Users\\julia\\Documents\\nlp-project\\code\\pp_evals\\[2]חנוכה סימן תרעא\\pro-3_evals_the_reco_of_sonnet-4.5.txt already exists\n",
-      "  Info: Found score bracket: [100, 67, 80, 56, 83]\n",
-      "file in C:\\Users\\julia\\Documents\\nlp-project\\code\\pp_evals\\[2]חנוכה סימן תרעא\\pro-3_evals_the_reco_of_opus-4.6.txt already exists\n",
-      "  Info: Found score bracket: [100, 100, 80, 67, 100]\n",
-      "file in C:\\Users\\julia\\Documents\\nlp-project\\code\\pp_evals\\[3] להניח ליד האש שיח\\pro-3_evals_the_reco_of_haiku-4.5.txt already exists\n",
-      "  Info: Found score bracket: [67, 100, 71, 60, 46]\n",
-      "file in C:\\Users\\julia\\Documents\\nlp-project\\code\\pp_evals\\[3] להניח ליד האש שיח\\pro-3_evals_the_reco_of_flash-3.txt already exists\n",
-      "  Info: Found score bracket: [67, 100, 71, 53, 44]\n",
-      "file in C:\\Users\\julia\\Documents\\nlp-project\\code\\pp_evals\\[3] להניח ליד האש שיח\\pro-3_evals_the_reco_of_pro-3.txt already exists\n",
-      "  Info: Found score bracket: [63, 100, 71, 85, 61]\n",
-      "file in C:\\Users\\julia\\Documents\\nlp-project\\code\\pp_evals\\[3] להניח ליד האש שיח\\pro-3_evals_the_reco_of_sonnet-4.5.txt already exists\n",
-      "  Info: Found score bracket: [67, 71, 71, 73, 53]\n",
-      "file in C:\\Users\\julia\\Documents\\nlp-project\\code\\pp_evals\\[3] להניח ליד האש שיח\\pro-3_evals_the_reco_of_opus-4.6.txt already exists\n",
-      "  Info: Found score bracket: [58, 71, 71, 50, 40]\n",
-      "file in C:\\Users\\julia\\Documents\\nlp-project\\code\\pp_evals\\ברכה לנשים על ציצית יז[1]\\pro-3_evals_the_reco_of_haiku-4.5.txt already exists\n",
-      "  Info: Found score bracket: [75, 67, 100, 57, 40]\n",
-      "file in C:\\Users\\julia\\Documents\\nlp-project\\code\\pp_evals\\ברכה לנשים על ציצית יז[1]\\pro-3_evals_the_reco_of_flash-3.txt already exists\n",
-      "  Info: Found score bracket: [50, 100, 100, 78, 70]\n",
-      "file in C:\\Users\\julia\\Documents\\nlp-project\\code\\pp_evals\\ברכה לנשים על ציצית יז[1]\\pro-3_evals_the_reco_of_pro-3.txt already exists\n",
-      "  Info: Found score bracket: [75, 67, 100, 75, 60]\n",
-      "file in C:\\Users\\julia\\Documents\\nlp-project\\code\\pp_evals\\ברכה לנשים על ציצית יז[1]\\pro-3_evals_the_reco_of_sonnet-4.5.txt already exists\n",
-      "  Info: Found score bracket: [75, 100, 100, 78, 70]\n",
-      "file in C:\\Users\\julia\\Documents\\nlp-project\\code\\pp_evals\\ברכה לנשים על ציצית יז[1]\\pro-3_evals_the_reco_of_opus-4.6.txt already exists\n",
-      "  Info: Found score bracket: [75, 100, 100, 100, 50]\n",
-      "file in C:\\Users\\julia\\Documents\\nlp-project\\code\\pp_evals\\גרוף וקטום רנג [2]\\pro-3_evals_the_reco_of_haiku-4.5.txt already exists\n",
-      "  Info: Found score bracket: [100, 100, 100, 50, 29]\n",
-      "file in C:\\Users\\julia\\Documents\\nlp-project\\code\\pp_evals\\גרוף וקטום רנג [2]\\pro-3_evals_the_reco_of_flash-3.txt already exists\n",
-      "  Info: Found score bracket: [100, 100, 100, 71, 71]\n",
-      "file in C:\\Users\\julia\\Documents\\nlp-project\\code\\pp_evals\\גרוף וקטום רנג [2]\\pro-3_evals_the_reco_of_pro-3.txt already exists\n",
-      "  Info: Found score bracket: [100, 100, 100, 86, 86]\n",
-      "file in C:\\Users\\julia\\Documents\\nlp-project\\code\\pp_evals\\גרוף וקטום רנג [2]\\pro-3_evals_the_reco_of_sonnet-4.5.txt already exists\n",
-      "  Info: Found score bracket: [100, 100, 100, 80, 57]\n",
-      "file in C:\\Users\\julia\\Documents\\nlp-project\\code\\pp_evals\\גרוף וקטום רנג [2]\\pro-3_evals_the_reco_of_opus-4.6.txt already exists\n",
-      "  Info: Found score bracket: [100, 100, 100, 100, 100]\n",
-      "file in C:\\Users\\julia\\Documents\\nlp-project\\code\\pp_evals\\זמן הדלקה תרעב [2]\\pro-3_evals_the_reco_of_haiku-4.5.txt already exists\n",
-      "  Info: Found score bracket: [100, 50, 50, 60, 50]\n",
-      "file in C:\\Users\\julia\\Documents\\nlp-project\\code\\pp_evals\\זמן הדלקה תרעב [2]\\pro-3_evals_the_reco_of_flash-3.txt already exists\n",
-      "  Info: Found score bracket: [95, 100, 67, 85, 85]\n",
-      "file in C:\\Users\\julia\\Documents\\nlp-project\\code\\pp_evals\\זמן הדלקה תרעב [2]\\pro-3_evals_the_reco_of_pro-3.txt already exists\n",
-      "  Info: Found score bracket: [50, 40, 33, 33, 50]\n",
-      "file in C:\\Users\\julia\\Documents\\nlp-project\\code\\pp_evals\\זמן הדלקה תרעב [2]\\pro-3_evals_the_reco_of_sonnet-4.5.txt already exists\n",
-      "  Info: Found score bracket: [50, 67, 33, 33, 50]\n",
-      "file in C:\\Users\\julia\\Documents\\nlp-project\\code\\pp_evals\\זמן הדלקה תרעב [2]\\pro-3_evals_the_reco_of_opus-4.6.txt already exists\n",
-      "  Info: Found score bracket: [88, 75, 50, 50, 50]\n",
-      "file in C:\\Users\\julia\\Documents\\nlp-project\\code\\pp_evals\\חנוכה סימן  [1] תרעג\\pro-3_evals_the_reco_of_haiku-4.5.txt already exists\n",
-      "  Info: Found score bracket: [100, 100, 100, 43, 38]\n",
-      "file in C:\\Users\\julia\\Documents\\nlp-project\\code\\pp_evals\\חנוכה סימן  [1] תרעג\\pro-3_evals_the_reco_of_flash-3.txt already exists\n",
-      "  Info: Found score bracket: [67, 60, 100, 71, 63]\n"
-     ]
-    },
-    {
-     "ename": "NameError",
-     "evalue": "name 'path_obj' is not defined",
-     "output_type": "error",
-     "traceback": [
-      "\u001b[31m---------------------------------------------------------------------------\u001b[39m",
-      "\u001b[31mNameError\u001b[39m                                 Traceback (most recent call last)",
-      "\u001b[36mCell\u001b[39m\u001b[36m \u001b[39m\u001b[32mIn[1]\u001b[39m\u001b[32m, line 444\u001b[39m\n\u001b[32m    441\u001b[39m     pipe = LLMPipeline(base_dir=base_dir, reco_prompt=reco_prompt, eval_prompt=eval_prompt)\n\u001b[32m    442\u001b[39m     models_names = [\u001b[33m\"\u001b[39m\u001b[33mclaude-haiku-4-5\u001b[39m\u001b[33m\"\u001b[39m, \u001b[33m\"\u001b[39m\u001b[33mgemini-3-flash-preview\u001b[39m\u001b[33m\"\u001b[39m, \u001b[33m\"\u001b[39m\u001b[33mgemini-3-pro-preview\u001b[39m\u001b[33m\"\u001b[39m, \u001b[33m\"\u001b[39m\u001b[33mclaude-sonnet-4-5\u001b[39m\u001b[33m\"\u001b[39m, \u001b[33m\"\u001b[39m\u001b[33mclaude-opus-4-6\u001b[39m\u001b[33m\"\u001b[39m]\n\u001b[32m--> \u001b[39m\u001b[32m444\u001b[39m     \u001b[43mpipe\u001b[49m\u001b[43m.\u001b[49m\u001b[43meval\u001b[49m\u001b[43m(\u001b[49m\u001b[43mpipe\u001b[49m\u001b[43m.\u001b[49m\u001b[43mreco\u001b[49m\u001b[43m(\u001b[49m\u001b[43mmodels_names\u001b[49m\u001b[43m)\u001b[49m\u001b[43m,\u001b[49m\u001b[43m \u001b[49m\u001b[33;43m\"\u001b[39;49m\u001b[33;43mgemini-3-pro-preview\u001b[39;49m\u001b[33;43m\"\u001b[39;49m\u001b[43m,\u001b[49m\u001b[43m \u001b[49m\u001b[43mmodels_names\u001b[49m\u001b[43m)\u001b[49m\n\u001b[32m    445\u001b[39m \u001b[38;5;28;01mexcept\u001b[39;00m \u001b[38;5;167;01mFileNotFoundError\u001b[39;00m \u001b[38;5;28;01mas\u001b[39;00m e:\n\u001b[32m    446\u001b[39m     \u001b[38;5;28mprint\u001b[39m(\u001b[33mf\u001b[39m\u001b[33m\"\u001b[39m\u001b[33mFile loading error during pipeline execution: \u001b[39m\u001b[38;5;132;01m{\u001b[39;00me\u001b[38;5;132;01m}\u001b[39;00m\u001b[33m\"\u001b[39m)\n",
-      "\u001b[36mCell\u001b[39m\u001b[36m \u001b[39m\u001b[32mIn[1]\u001b[39m\u001b[32m, line 243\u001b[39m, in \u001b[36mLLMPipeline.eval\u001b[39m\u001b[34m(self, sub_col, eval_model_name, reco_models_names)\u001b[39m\n\u001b[32m    242\u001b[39m \u001b[38;5;28;01mdef\u001b[39;00m\u001b[38;5;250m \u001b[39m\u001b[34meval\u001b[39m(\u001b[38;5;28mself\u001b[39m, sub_col: SubCollection, eval_model_name: \u001b[38;5;28mstr\u001b[39m, reco_models_names: List[\u001b[38;5;28mstr\u001b[39m]) -> \u001b[38;5;28;01mNone\u001b[39;00m:\n\u001b[32m--> \u001b[39m\u001b[32m243\u001b[39m     \u001b[43msub_col\u001b[49m\u001b[43m.\u001b[49m\u001b[43mcol_eval\u001b[49m\u001b[43m(\u001b[49m\u001b[38;5;28;43mself\u001b[39;49m\u001b[43m.\u001b[49m\u001b[43meval_prompt\u001b[49m\u001b[43m,\u001b[49m\u001b[43m \u001b[49m\u001b[43meval_model_name\u001b[49m\u001b[43m,\u001b[49m\u001b[43m \u001b[49m\u001b[43mreco_models_names\u001b[49m\u001b[43m)\u001b[49m\n",
-      "\u001b[36mCell\u001b[39m\u001b[36m \u001b[39m\u001b[32mIn[1]\u001b[39m\u001b[32m, line 206\u001b[39m, in \u001b[36mSubCollection.col_eval\u001b[39m\u001b[34m(self, eval_prompt, eval_model_name, reco_models_names)\u001b[39m\n\u001b[32m    204\u001b[39m \u001b[38;5;28;01mdef\u001b[39;00m\u001b[38;5;250m \u001b[39m\u001b[34mcol_eval\u001b[39m(\u001b[38;5;28mself\u001b[39m, eval_prompt: \u001b[38;5;28mstr\u001b[39m, eval_model_name: \u001b[38;5;28mstr\u001b[39m, reco_models_names: List[\u001b[38;5;28mstr\u001b[39m]) -> \u001b[38;5;28;01mNone\u001b[39;00m:\n\u001b[32m    205\u001b[39m     \u001b[38;5;28;01mfor\u001b[39;00m sub \u001b[38;5;129;01min\u001b[39;00m \u001b[38;5;28mself\u001b[39m.subs:\n\u001b[32m--> \u001b[39m\u001b[32m206\u001b[39m         \u001b[43msub\u001b[49m\u001b[43m.\u001b[49m\u001b[43meval\u001b[49m\u001b[43m(\u001b[49m\u001b[43meval_prompt\u001b[49m\u001b[43m,\u001b[49m\u001b[43m \u001b[49m\u001b[43meval_model_name\u001b[49m\u001b[43m,\u001b[49m\u001b[43m \u001b[49m\u001b[43mreco_models_names\u001b[49m\u001b[43m)\u001b[49m\n",
-      "\u001b[36mCell\u001b[39m\u001b[36m \u001b[39m\u001b[32mIn[1]\u001b[39m\u001b[32m, line 153\u001b[39m, in \u001b[36mSub.eval\u001b[39m\u001b[34m(self, eval_prompt, eval_model_name, reco_models_names)\u001b[39m\n\u001b[32m    151\u001b[39m prompt = eval_prompt + reco_gt + reco_text\n\u001b[32m    152\u001b[39m \u001b[38;5;66;03m#print(f\"evals now  {path.stem}\")\u001b[39;00m\n\u001b[32m--> \u001b[39m\u001b[32m153\u001b[39m \u001b[38;5;28mprint\u001b[39m(\u001b[33mf\u001b[39m\u001b[33m\"\u001b[39m\u001b[33mevals now \u001b[39m\u001b[38;5;132;01m{\u001b[39;00m\u001b[43mpath_obj\u001b[49m.stem\u001b[38;5;132;01m}\u001b[39;00m\u001b[33m from \u001b[39m\u001b[38;5;132;01m{\u001b[39;00mpath_obj.parent.name\u001b[38;5;132;01m}\u001b[39;00m\u001b[33m\"\u001b[39m)\n\u001b[32m    154\u001b[39m eval_text = call_llm(prompt, eval_model_name)\n\u001b[32m    156\u001b[39m \u001b[38;5;28;01mif\u001b[39;00m \u001b[33m'\u001b[39m\u001b[33merror\u001b[39m\u001b[33m'\u001b[39m \u001b[38;5;129;01mnot\u001b[39;00m \u001b[38;5;129;01min\u001b[39;00m eval_text.lower():\n",
-      "\u001b[31mNameError\u001b[39m: name 'path_obj' is not defined"
-     ]
-    }
-   ],
-   "source": [
-    "import os\n",
-    "import re\n",
-    "import asyncio\n",
-    "import pandas as pd\n",
-    "import numpy as np\n",
-    "import matplotlib.pyplot as plt\n",
-    "import seaborn as sns\n",
-    "from datetime import datetime\n",
-    "from typing import Optional, List, Dict, Tuple\n",
-    "from pathlib import Path\n",
-    "from dataclasses import dataclass, field\n",
-    "from concurrent.futures import ThreadPoolExecutor\n",
-    "\n",
-    "# --- API Clients & Setup ---\n",
-    "from dotenv import load_dotenv\n",
-    "import anthropic\n",
-    "from termcolor import colored\n",
-    "\n",
-    "try:\n",
-    "    from google import genai\n",
-    "    GOOGLE_SDK_AVAILABLE = True\n",
-    "except ImportError:\n",
-    "    GOOGLE_SDK_AVAILABLE = False\n",
-    "\n",
-    "load_dotenv()\n",
-    "\n",
-    "GOOGLE_API_KEY = os.environ.get('GOOGLE_API_KEY')\n",
-    "ANTHROPIC_API_KEY = os.environ.get('ANTHROPIC_API_KEY')\n",
-    "\n",
-    "print(f\"Google API Key loaded: {GOOGLE_API_KEY is not None}\")\n",
-    "print(f\"Anthropic API Key loaded: {ANTHROPIC_API_KEY is not None}\")\n",
-    "\n",
-    "# Initialize clients\n",
-    "gemini_client = genai.Client(api_key=GOOGLE_API_KEY) if GOOGLE_SDK_AVAILABLE else None\n",
-    "claude_client = anthropic.Anthropic(api_key=ANTHROPIC_API_KEY)\n",
-    "\n",
-    "# --- Synchronous API Call Functions ---\n",
-    "\n",
-    "def call_gemini(prompt: str, model_name: str = \"gemini-3-pro\") -> str:\n",
-    "    global gemini_client\n",
-    "    try:\n",
-    "        response = gemini_client.models.generate_content(\n",
-    "            model=f\"models/{model_name}\",\n",
-    "            contents=prompt\n",
-    "        )\n",
-    "        if response.text:\n",
-    "            return response.text\n",
-    "        else:\n",
-    "            return \"Error: Empty response from Gemini (possibly blocked by safety filters).\"\n",
-    "    except Exception as e:\n",
-    "        print(f\"Error calling {model_name}: {e}\")\n",
-    "        return f\"Error: {e}\"\n",
-    "\n",
-    "def call_claude(prompt: str, model_name: str = \"claude-haiku-4-5\") -> str:\n",
-    "    try:\n",
-    "        message = claude_client.messages.create(\n",
-    "            model=model_name,\n",
-    "            max_tokens=20000,\n",
-    "            messages=[{\"role\": \"user\", \"content\": prompt}]\n",
-    "        )\n",
-    "        return message.content[0].text\n",
-    "    except Exception as e:\n",
-    "        print(f\"Error calling {model_name}: {e}\")\n",
-    "        return f\"Error: {e}\"\n",
-    "\n",
-    "def call_llm(prompt, model_name):\n",
-    "    if model_name.startswith(\"gemini\"):\n",
-    "        return call_gemini(prompt, model_name)\n",
-    "    elif model_name.startswith(\"claude\"):\n",
-    "        return call_claude(prompt, model_name)\n",
-    "    else:\n",
-    "        msg = f\"Error: model name '{model_name}' not recognized\"\n",
-    "        print(msg)\n",
-    "        return msg\n",
-    "\n",
-    "# --- File Utility Functions ---\n",
-    "\n",
-    "def load_text(path: Path) -> str:\n",
-    "    with open(path, 'r', encoding='utf-8') as f:\n",
-    "        return f.read()\n",
-    "\n",
-    "def save_text(path: Path, text: str) -> None:\n",
-    "    path.parent.mkdir(parents=True, exist_ok=True)\n",
-    "    with open(path, 'w', encoding='utf-8') as f:\n",
-    "        f.write(text)\n",
-    "\n",
-    "# --- Data Structures ---\n",
-    "\n",
-    "@dataclass\n",
-    "class Sub:\n",
-    "    \"\"\"Holds all data for a single origin file's analysis.\"\"\"\n",
-    "    # for reco\n",
-    "    origin_path: Path = None\n",
-    "    reco_dir: Path = None \n",
-    "    reco_gt_path: Path = None\n",
-    "    reco_date: Optional[datetime] = None\n",
-    "    \n",
-    "    # for eval\n",
-    "    eval_dir: Path = None\n",
-    "    eval_scores: Dict[str, List[float]] = field(default_factory=dict)\n",
-    "    eval_date: Optional[datetime] = None\n",
-    "    \n",
-    "    # for reports\n",
-    "    reports_dir: Path = None\n",
-    "\n",
-    "    def reco(self, reco_prompt: str, models_names: List[str]) -> None:\n",
-    "        \"\"\"Runs all reco models on the origin text.\"\"\"\n",
-    "        origin_text = load_text(self.origin_path)\n",
-    "        for model_name in models_names:\n",
-    "            path = self.reco_dir / f\"{model_name}.txt\"\n",
-    "            if path.exists():\n",
-    "                print(f\"file in {path} already exists\")\n",
-    "                continue\n",
-    "            prompt = reco_prompt + origin_text\n",
-    "            print(f\"reco now  {self.origin_path.stem} with {model_name}\")\n",
-    "            reco_text = call_llm(prompt, model_name)\n",
-    "            if 'error' not in reco_text.lower():\n",
-    "                save_text(path, reco_text)\n",
-    "            else:\n",
-    "                print(f\"  [SKIPPED] {model_name} output contains error keyword.\")\n",
-    "    \n",
-    "    def get_model_nickname(self, full_model_name: str) -> str:\n",
-    "        \"\"\"Convert full model name to short nickname for display/saving.\"\"\"\n",
-    "        mapping = {\n",
-    "            \"claude-sonnet-4-5\": \"sonnet-4.5\",\n",
-    "            \"claude-haiku-4-5\": \"haiku-4.5\",\n",
-    "            \"claude-opus-4-6\": \"opus-4.6\",\n",
-    "            \"gemini-3-flash-preview\": \"flash-3\",\n",
-    "            \"gemini-3-pro-preview\": \"pro-3\",\n",
-    "        }\n",
-    "        return mapping.get(full_model_name, full_model_name)\n",
-    "\n",
-    "    def eval(self, eval_prompt: str, eval_model_name: str, reco_models_names: List[str]) -> None:\n",
-    "        \"\"\"Runs evals on all recos\"\"\"\n",
-    "        reco_gt = load_text(self.reco_gt_path)\n",
-    "        for model_name in reco_models_names:\n",
-    "            path = self.eval_dir / f\"{self.get_model_nickname(eval_model_name)}_evals_the_reco_of_{self.get_model_nickname(model_name)}.txt\"\n",
-    "            if path.exists():\n",
-    "                print(f\"file in {path} already exists\")\n",
-    "                eval_text = load_text(path)\n",
-    "                self.eval_scores[model_name] = self.extract_scores_from_eval_text(eval_text)\n",
-    "                continue\n",
-    "            \n",
-    "            reco_file_path = self.reco_dir / f\"{model_name}.txt\"\n",
-    "            if not reco_file_path.exists():\n",
-    "                print(f\"  [SKIPPED EVAL] Reco file missing for {model_name}. Skipping evaluation.\")\n",
-    "                self.eval_scores[model_name] = [0.0] * 5 \n",
-    "                continue\n",
-    "\n",
-    "            reco_text = load_text(reco_file_path)\n",
-    "            prompt = eval_prompt + reco_gt + reco_text\n",
-    "            #print(f\"evals now  {path.stem}\")\n",
-    "            path_obj = Path(path)\n",
-    "            print(f\"evals now {path_obj.stem} from {path_obj.parent.name}\")\n",
-    "            eval_text = call_llm(prompt, eval_model_name)\n",
-    "\n",
-    "            if 'error' not in eval_text.lower():\n",
-    "                save_text(path, eval_text)\n",
-    "                self.eval_scores[model_name] = self.extract_scores_from_eval_text(eval_text)\n",
-    "            else:\n",
-    "                print(f\"  [SKIPPED] Eval for {model_name} contains error keyword.\")\n",
-    "                self.eval_scores[model_name] = [0.0] * 5\n",
-    "\n",
-    "            self.eval_date = datetime.now()\n",
-    "\n",
-    "    def extract_scores_from_eval_text(self, eval_text: str) -> List[float]:\n",
-    "        '''Extracts exactly 5 scores (0-100) from an evaluation text.'''\n",
-    "        scores = []\n",
-    "        last_50_words = ' '.join(eval_text.split()[-50:])\n",
-    "        match = re.search(r'\\[([^\\]]+)\\](?!.*\\[)', last_50_words)\n",
-    "\n",
-    "        search_text = eval_text\n",
-    "        if match:\n",
-    "            search_text = match.group(1)\n",
-    "            print(f\"  Info: Found score bracket: [{search_text}]\")\n",
-    "        else:\n",
-    "            print(\"  Warning: No score bracket [] found. Searching whole text.\")\n",
-    "\n",
-    "        numbers = re.findall(r'\\b\\d+\\.?\\d*\\b', search_text)\n",
-    "        scores = [float(num) for num in numbers if 0 <= float(num) <= 100]\n",
-    "\n",
-    "        if len(scores) < 5:\n",
-    "            print(f\"  Warning: Found only {len(scores)} scores. Padding with 0.0.\")\n",
-    "            scores.extend([0.0] * (5 - len(scores)))\n",
-    "        elif len(scores) > 5:\n",
-    "            print(f\"  Warning: Found {len(scores)} scores inside search area. Taking the last 5.\")\n",
-    "            scores = scores[-5:]\n",
-    "\n",
-    "        return scores\n",
-    "\n",
-    "\n",
-    "@dataclass\n",
-    "class SubCollection:\n",
-    "    \"\"\"Manages a collection of Sub objects.\"\"\"\n",
-    "    subs: List[Sub] = field(default_factory=list)\n",
-    "    reports_dir: Path = None\n",
-    "\n",
-    "    def add(self, sub: Sub) -> None:\n",
-    "        self.subs.append(sub)\n",
-    "\n",
-    "    def col_reco(self, reco_prompt: str, models_names: List[str]) -> None:\n",
-    "        for sub in self.subs:\n",
-    "            sub.reco(reco_prompt, models_names)\n",
-    "\n",
-    "    def col_eval(self, eval_prompt: str, eval_model_name: str, reco_models_names: List[str]) -> None:\n",
-    "        for sub in self.subs:\n",
-    "            sub.eval(eval_prompt, eval_model_name, reco_models_names)\n",
-    "\n",
-    "\n",
-    "# --- Main Pipeline ---\n",
-    "\n",
-    "class LLMPipeline:\n",
-    "    \"\"\"Main class to run the reco and eval pipeline.\"\"\"\n",
-    "\n",
-    "    def __init__(self, base_dir: Path, reco_prompt: str, eval_prompt: str):\n",
-    "        self.base_dir = Path(base_dir)\n",
-    "        # for reco\n",
-    "        self.origins_dir = self.base_dir / \"pp_origins\"\n",
-    "        self.recos_dir = self.base_dir / \"pp_recos\"\n",
-    "        self.recogt_dir = self.base_dir / \"reco_gt\"\n",
-    "        self.reco_prompt = reco_prompt\n",
-    "        # for eval\n",
-    "        self.eval_dir = self.base_dir / \"pp_evals\"\n",
-    "        self.reports_dir = self.base_dir / \"pp_reports\"\n",
-    "        self.eval_prompt = eval_prompt\n",
-    "\n",
-    "    def reco(self, models_names: List[str]) -> SubCollection:\n",
-    "        \"\"\"Runs all reco models on the origin text.\"\"\"\n",
-    "        sub_col = SubCollection(reports_dir=self.reports_dir)\n",
-    "        for origin_path in self.origins_dir.iterdir():\n",
-    "            if not origin_path.is_file():\n",
-    "                continue\n",
-    "            file_name = origin_path.name\n",
-    "            sub = Sub(origin_path=origin_path,\n",
-    "                      reco_dir=(self.recos_dir / origin_path.stem),\n",
-    "                      reco_gt_path=self.recogt_dir / file_name,\n",
-    "                      eval_dir=(self.eval_dir / origin_path.stem))\n",
-    "            sub_col.add(sub)\n",
-    "            \n",
-    "        sub_col.col_reco(self.reco_prompt, models_names)\n",
-    "        return sub_col\n",
-    "\n",
-    "    def eval(self, sub_col: SubCollection, eval_model_name: str, reco_models_names: List[str]) -> None:\n",
-    "        sub_col.col_eval(self.eval_prompt, eval_model_name, reco_models_names)\n",
-    "\n",
-    "# =======================\n",
-    "# VISUALIZATION & EXPORT\n",
-    "# =======================\n",
-    "\n",
-    "ROOT_FOLDER = \"pp_evals\"\n",
-    "REPORT_FOLDER = \"pp_reports\"\n",
-    "\n",
-    "if not os.path.exists(REPORT_FOLDER):\n",
-    "    os.makedirs(REPORT_FOLDER)\n",
-    "\n",
-    "LLM_MAPPING = {\n",
-    "    \"flash-3\": \"3 Flash\",\n",
-    "    \"pro-3\": \"3 Pro\",\n",
-    "    \"haiku-4.5\": \"Haiku 4.5\",\n",
-    "    \"sonnet-4.5\": \"Sonnet 4.5\",\n",
-    "    \"opus-4.6\": \"opus 4.6\",\n",
-    "}\n",
-    "\n",
-    "CRITERIA_NAMES = {\n",
-    "    1: \"Precisions of categories\",\n",
-    "    2: \"Recall of categories\",\n",
-    "    3: \"Precisions of opinions\",\n",
-    "    4: \"Recall of opinions\"\n",
-    "}\n",
-    "\n",
-    "CUSTOM_PALETTE = [\"#1f77b4\", \"#d62728\", \"#2ca02c\", \"#ff7f0e\", \"#9467bd\"]\n",
-    "\n",
-    "def get_file_info(filename):\n",
-    "    filename_lower = filename.lower()\n",
-    "    found_llm = \"Unknown\"\n",
-    "    \n",
-    "    matches = []\n",
-    "    for pattern, display_name in LLM_MAPPING.items():\n",
-    "        for match in re.finditer(re.escape(pattern), filename_lower):\n",
-    "            matches.append({\n",
-    "                'start': match.start(),\n",
-    "                'len': len(pattern),\n",
-    "                'name': display_name\n",
-    "            })\n",
-    "    \n",
-    "    if matches:\n",
-    "        matches.sort(key=lambda x: (x['start'], x['len']), reverse=True)\n",
-    "        found_llm = matches[0]['name']\n",
-    "\n",
-    "    weight = 1\n",
-    "    match_weight = re.search(r'\\[(\\d+)\\]', filename)\n",
-    "    if match_weight:\n",
-    "        weight = int(match_weight.group(1))\n",
-    "        \n",
-    "    return found_llm, weight\n",
-    "\n",
-    "def get_valid_scores(text):\n",
-    "    pattern = r\"\\[\\s*(\\d+(?:\\.\\d+)?)\\s*,\\s*(\\d+(?:\\.\\d+)?)\\s*,\\s*(\\d+(?:\\.\\d+)?)\\s*,\\s*(\\d+(?:\\.\\d+)?)\\s*,\\s*(\\d+(?:\\.\\d+)?)\\s*\\]\"\n",
-    "    matches = re.findall(pattern, text)\n",
-    "    \n",
-    "    for match in reversed(matches):\n",
-    "        try:\n",
-    "            full_scores = [float(n) for n in match]\n",
-    "            if sum(full_scores) == 0:\n",
-    "                continue \n",
-    "            if all(1 <= s <= 100 for s in full_scores):\n",
-    "                return full_scores[1:] \n",
-    "        except ValueError:\n",
-    "            continue\n",
-    "    return []\n",
-    "\n",
-    "def calculate_weighted_avg(df):\n",
-    "    if df.empty or df['Weight'].sum() == 0:\n",
-    "        return 0\n",
-    "    weighted_sum = (df['Score'] * df['Weight']).sum()\n",
-    "    total_weights = df['Weight'].sum()\n",
-    "    return weighted_sum / total_weights\n",
-    "\n",
-    "def plot_global_results(df):\n",
-    "    plt.figure(figsize=(12, 7))\n",
-    "    sns.set_theme(style=\"whitegrid\")\n",
-    "    \n",
-    "    df_global = df.groupby('LLM', group_keys=False).apply(calculate_weighted_avg).reset_index(name='Final_Score')\n",
-    "    df_global = df_global.sort_values('Final_Score', ascending=False)\n",
-    "    \n",
-    "    file_counts = df.groupby('LLM')['Source_File'].nunique()\n",
-    "    print(\"\\n--- Files successfully included per Model ---\")\n",
-    "    print(file_counts)\n",
-    "    \n",
-    "    ax = sns.barplot(\n",
-    "        data=df_global, x='LLM', y='Final_Score', hue='LLM',\n",
-    "        palette=CUSTOM_PALETTE, edgecolor='black', legend=False\n",
-    "    )\n",
-    "    \n",
-    "    for container in ax.containers:\n",
-    "        ax.bar_label(container, fmt='%.1f', padding=5, fontsize=12, fontweight='bold')\n",
-    "\n",
-    "    plt.title('AVERAGE GLOBAL SCORE (Out of 100)', fontsize=16, fontweight='bold', pad=20)\n",
-    "    plt.xlabel('Model', fontsize=13)\n",
-    "    plt.ylabel('Average Score (/100)', fontsize=13)\n",
-    "    plt.ylim(0, 105)\n",
-    "    plt.tight_layout()\n",
-    "    \n",
-    "    save_path = os.path.join(REPORT_FOLDER, \"global_scores.png\")\n",
-    "    plt.savefig(save_path, dpi=300)\n",
-    "    print(f\"\\n📊 Saved global chart to: {save_path}\")\n",
-    "    plt.show()\n",
-    "\n",
-    "def plot_criteria_results(df):\n",
-    "    plt.figure(figsize=(14, 8))\n",
-    "    sns.set_theme(style=\"whitegrid\")\n",
-    "    \n",
-    "    df_crit = df.groupby(['Criteria_Index', 'LLM'], group_keys=False).apply(calculate_weighted_avg).reset_index(name='Final_Score')\n",
-    "    \n",
-    "    sns.barplot(\n",
-    "        data=df_crit, x='Criteria_Index', y='Final_Score', hue='LLM',\n",
-    "        palette=CUSTOM_PALETTE, edgecolor='black'\n",
-    "    )\n",
-    "    \n",
-    "    plt.title('Performance by Category', fontsize=16, fontweight='bold', pad=20)\n",
-    "    plt.xlabel('Evaluation Categories', fontsize=13)\n",
-    "    plt.ylabel('Average Model Score (/100)', fontsize=13)\n",
-    "    plt.ylim(0, 105)\n",
-    "    plt.legend(bbox_to_anchor=(1.02, 1), loc='upper left', borderaxespad=0, title=\"Models\")\n",
-    "    plt.tight_layout()\n",
-    "    \n",
-    "    save_path = os.path.join(REPORT_FOLDER, \"category_scores.png\")\n",
-    "    plt.savefig(save_path, dpi=300)\n",
-    "    print(f\"📊 Saved category chart to: {save_path}\")\n",
-    "    plt.show()\n",
-    "\n",
-    "# =======================\n",
-    "# EXECUTION SCRIPT\n",
-    "# =======================\n",
-    "\n",
-    "def generate_reports():\n",
-    "    data = []\n",
-    "    \n",
-    "    if not os.path.exists(ROOT_FOLDER):\n",
-    "        print(f\"ERROR: Folder '{ROOT_FOLDER}' not found.\")\n",
-    "        print(f\"Please create '{ROOT_FOLDER}' and add your subject folders inside.\")\n",
-    "        return\n",
-    "\n",
-    "    print(f\"--- Analyzing folder: {ROOT_FOLDER} ---\")\n",
-    "\n",
-    "    for root, dirs, files in os.walk(ROOT_FOLDER):\n",
-    "        category = os.path.basename(root)\n",
-    "        if root == ROOT_FOLDER: continue\n",
-    "            \n",
-    "        for file in files:\n",
-    "            if not file.endswith(\".txt\"): continue\n",
-    "                \n",
-    "            path = os.path.join(root, file)\n",
-    "            llm, weight = get_file_info(file)\n",
-    "            \n",
-    "            if llm == \"Unknown\":\n",
-    "                continue\n",
-    "                \n",
-    "            try:\n",
-    "                with open(path, 'r', encoding='utf-8', errors='ignore') as f:\n",
-    "                    content = f.read()\n",
-    "                \n",
-    "                valid_scores = get_valid_scores(content)\n",
-    "                \n",
-    "                if len(valid_scores) == 4:\n",
-    "                    for i, score in enumerate(valid_scores, start=1):\n",
-    "                        data.append({\n",
-    "                            'Source_File': file,\n",
-    "                            'Category': category,\n",
-    "                            'Criteria_Index': CRITERIA_NAMES.get(i, f\"Criterion {i}\"),\n",
-    "                            'LLM': llm,\n",
-    "                            'Score': score,\n",
-    "                            'Weight': weight\n",
-    "                        })\n",
-    "                \n",
-    "            except Exception as e:\n",
-    "                print(f\"  [ERROR] {file}: {e}\")\n",
-    "\n",
-    "    df = pd.DataFrame(data)\n",
-    "    \n",
-    "    if df.empty:\n",
-    "        print(\"\\n❌ No valid data found.\")\n",
-    "        print(\"Ensure files have a bracket like [80, 90, 85, 90, 95] (1-100 range).\")\n",
-    "        return\n",
-    "\n",
-    "    print(f\"\\n✅ Success: {len(df)} individual scores extracted.\")\n",
-    "    \n",
-    "    plot_global_results(df)\n",
-    "    plot_criteria_results(df)\n",
-    "\n",
-    "\n",
-    "if __name__ == \"__main__\":\n",
-    "    # --- 1. Run Pipeline ---\n",
-    "    base_dir = Path(r\"C:\\Users\\julia\\Documents\\nlp-project\\code\")\n",
-    "    reco_prompt_path = base_dir / \"prompts\" / \"reco_prompts\" / \"pp_reco_prompt.txt\"\n",
-    "    eval_prompt_path = base_dir / \"prompts\" / \"eval_prompt\" / \"eval_prompt.txt\"\n",
-    "    \n",
-    "    try:\n",
-    "        reco_prompt = load_text(reco_prompt_path)\n",
-    "        eval_prompt = load_text(eval_prompt_path)\n",
-    "        \n",
-    "        pipe = LLMPipeline(base_dir=base_dir, reco_prompt=reco_prompt, eval_prompt=eval_prompt)\n",
-    "        models_names = [\"claude-haiku-4-5\", \"gemini-3-flash-preview\", \"gemini-3-pro-preview\", \"claude-sonnet-4-5\", \"claude-opus-4-6\"]\n",
-    "        \n",
-    "        pipe.eval(pipe.reco(models_names), \"gemini-3-pro-preview\", models_names)\n",
-    "    except FileNotFoundError as e:\n",
-    "        print(f\"File loading error during pipeline execution: {e}\")\n",
-    "        print(\"Skipping LLM calls. Proceeding to report generation if data exists.\")\n",
-    "\n",
-    "    # --- 2. Generate Reports ---\n",
-    "    generate_reports()"
-   ]
-  }
- ],
- "metadata": {
-  "kernelspec": {
-   "display_name": "Python 3",
-   "language": "python",
-   "name": "python3"
-  },
-  "language_info": {
-   "codemirror_mode": {
-    "name": "ipython",
-    "version": 3
-   },
-   "file_extension": ".py",
-   "mimetype": "text/x-python",
-   "name": "python",
-   "nbconvert_exporter": "python",
-   "pygments_lexer": "ipython3",
-   "version": "3.11.9"
-  }
- },
- "nbformat": 4,
- "nbformat_minor": 5
+import os
+import re
+import asyncio
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+from datetime import datetime
+from typing import Optional, List, Dict, Tuple
+from pathlib import Path
+from dataclasses import dataclass, field
+from concurrent.futures import ThreadPoolExecutor
+
+# --- API Clients & Setup ---
+from dotenv import load_dotenv
+import anthropic
+from termcolor import colored
+
+try:
+    from google import genai
+    GOOGLE_SDK_AVAILABLE = True
+except ImportError:
+    GOOGLE_SDK_AVAILABLE = False
+
+load_dotenv()
+
+GOOGLE_API_KEY = os.environ.get('GOOGLE_API_KEY')
+ANTHROPIC_API_KEY = os.environ.get('ANTHROPIC_API_KEY')
+
+print(f"Google API Key loaded: {GOOGLE_API_KEY is not None}")
+print(f"Anthropic API Key loaded: {ANTHROPIC_API_KEY is not None}")
+
+# Initialize clients
+gemini_client = genai.Client(api_key=GOOGLE_API_KEY) if GOOGLE_SDK_AVAILABLE else None
+claude_client = anthropic.Anthropic(api_key=ANTHROPIC_API_KEY)
+
+# --- Synchronous API Call Functions ---
+
+def call_gemini(prompt: str, model_name: str = "gemini-3-pro") -> str:
+    global gemini_client
+    try:
+        response = gemini_client.models.generate_content(
+            model=f"models/{model_name}",
+            contents=prompt
+        )
+        if response.text:
+            return response.text
+        else:
+            return "Error: Empty response from Gemini (possibly blocked by safety filters)."
+    except Exception as e:
+        print(f"Error calling {model_name}: {e}")
+        return f"Error: {e}"
+
+def call_claude(prompt: str, model_name: str = "claude-haiku-4-5") -> str:
+    try:
+        message = claude_client.messages.create(
+            model=model_name,
+            max_tokens=20000,
+            messages=[{"role": "user", "content": prompt}]
+        )
+        return message.content[0].text
+    except Exception as e:
+        print(f"Error calling {model_name}: {e}")
+        return f"Error: {e}"
+
+def call_llm(prompt, model_name):
+    if model_name.startswith("gemini"):
+        return call_gemini(prompt, model_name)
+    elif model_name.startswith("claude"):
+        return call_claude(prompt, model_name)
+    else:
+        msg = f"Error: model name '{model_name}' not recognized"
+        print(msg)
+        return msg
+
+# --- File Utility Functions ---
+
+def load_text(path: Path) -> str:
+    with open(path, 'r', encoding='utf-8') as f:
+        return f.read()
+
+def save_text(path: Path, text: str) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    with open(path, 'w', encoding='utf-8') as f:
+        f.write(text)
+
+# --- Data Structures ---
+
+@dataclass
+class Sub:
+    """Holds all data for a single origin file's analysis."""
+    # for reco
+    origin_path: Path = None
+    reco_dir: Path = None 
+    reco_gt_path: Path = None
+    reco_date: Optional[datetime] = None
+    
+    # for eval
+    eval_dir: Path = None
+    eval_scores: Dict[str, List[float]] = field(default_factory=dict)
+    eval_date: Optional[datetime] = None
+    
+    # for reports
+    reports_dir: Path = None
+
+    def reco(self, reco_prompt: str, models_names: List[str]) -> None:
+        """Runs all reco models on the origin text."""
+        origin_text = load_text(self.origin_path)
+        for model_name in models_names:
+            path = self.reco_dir / f"{model_name}.txt"
+            if path.exists():
+                print(f"file in {path} already exists")
+                continue
+            prompt = reco_prompt + origin_text
+            print(f"reco now  {self.origin_path.stem} with {model_name}")
+            reco_text = call_llm(prompt, model_name)
+            if 'error' not in reco_text.lower():
+                save_text(path, reco_text)
+            else:
+                print(f"  [SKIPPED] {model_name} output contains error keyword.")
+    
+    def get_model_nickname(self, full_model_name: str) -> str:
+        """Convert full model name to short nickname for display/saving."""
+        mapping = {
+            "claude-sonnet-4-5": "sonnet-4.5",
+            "claude-haiku-4-5": "haiku-4.5",
+            "claude-opus-4-6": "opus-4.6",
+            "gemini-3-flash-preview": "flash-3",
+            "gemini-3-pro-preview": "pro-3",
+        }
+        return mapping.get(full_model_name, full_model_name)
+
+    def eval(self, eval_prompt: str, eval_model_name: str, reco_models_names: List[str]) -> None:
+        """Runs evals on all recos"""
+        reco_gt = load_text(self.reco_gt_path)
+        for model_name in reco_models_names:
+            path = self.eval_dir / f"{self.get_model_nickname(eval_model_name)}_evals_the_reco_of_{self.get_model_nickname(model_name)}.txt"
+            if path.exists():
+                print(f"file in {path} already exists")
+                eval_text = load_text(path)
+                self.eval_scores[model_name] = self.extract_scores_from_eval_text(eval_text)
+                continue
+            
+            reco_file_path = self.reco_dir / f"{model_name}.txt"
+            if not reco_file_path.exists():
+                print(f"  [SKIPPED EVAL] Reco file missing for {model_name}. Skipping evaluation.")
+                self.eval_scores[model_name] = [0.0] * 5 
+                continue
+
+            reco_text = load_text(reco_file_path)
+            prompt = eval_prompt + reco_gt + reco_text
+            print(f"evals now  {path.stem}")
+            eval_text = call_llm(prompt, eval_model_name)
+
+            if 'error' not in eval_text.lower():
+                save_text(path, eval_text)
+                self.eval_scores[model_name] = self.extract_scores_from_eval_text(eval_text)
+            else:
+                print(f"  [SKIPPED] Eval for {model_name} contains error keyword.")
+                self.eval_scores[model_name] = [0.0] * 5
+
+            self.eval_date = datetime.now()
+
+    def extract_scores_from_eval_text(self, eval_text: str) -> List[float]:
+        '''Extracts exactly 5 scores (0-100) from an evaluation text.'''
+        scores = []
+        last_50_words = ' '.join(eval_text.split()[-50:])
+        match = re.search(r'\[([^\]]+)\](?!.*\[)', last_50_words)
+
+        search_text = eval_text
+        if match:
+            search_text = match.group(1)
+            print(f"  Info: Found score bracket: [{search_text}]")
+        else:
+            print("  Warning: No score bracket [] found. Searching whole text.")
+
+        numbers = re.findall(r'\b\d+\.?\d*\b', search_text)
+        scores = [float(num) for num in numbers if 0 <= float(num) <= 100]
+
+        if len(scores) < 5:
+            print(f"  Warning: Found only {len(scores)} scores. Padding with 0.0.")
+            scores.extend([0.0] * (5 - len(scores)))
+        elif len(scores) > 5:
+            print(f"  Warning: Found {len(scores)} scores inside search area. Taking the last 5.")
+            scores = scores[-5:]
+
+        return scores
+
+
+@dataclass
+class SubCollection:
+    """Manages a collection of Sub objects."""
+    subs: List[Sub] = field(default_factory=list)
+    reports_dir: Path = None
+
+    def add(self, sub: Sub) -> None:
+        self.subs.append(sub)
+
+    def col_reco(self, reco_prompt: str, models_names: List[str]) -> None:
+        for sub in self.subs:
+            sub.reco(reco_prompt, models_names)
+
+    def col_eval(self, eval_prompt: str, eval_model_name: str, reco_models_names: List[str]) -> None:
+        for sub in self.subs:
+            sub.eval(eval_prompt, eval_model_name, reco_models_names)
+
+
+# --- Main Pipeline ---
+
+class LLMPipeline:
+    """Main class to run the reco and eval pipeline."""
+
+    def __init__(self, base_dir: Path, reco_prompt: str, eval_prompt: str):
+        self.base_dir = Path(base_dir)
+        # for reco
+        self.origins_dir = self.base_dir / "pp_origins"
+        self.recos_dir = self.base_dir / "pp_recos"
+        self.recogt_dir = self.base_dir / "reco_gt"
+        self.reco_prompt = reco_prompt
+        # for eval
+        self.eval_dir = self.base_dir / "pp_evals"
+        self.reports_dir = self.base_dir / "pp_reports"
+        self.eval_prompt = eval_prompt
+
+    def reco(self, models_names: List[str]) -> SubCollection:
+        """Runs all reco models on the origin text."""
+        sub_col = SubCollection(reports_dir=self.reports_dir)
+        for origin_path in self.origins_dir.iterdir():
+            if not origin_path.is_file():
+                continue
+            file_name = origin_path.name
+            sub = Sub(origin_path=origin_path,
+                      reco_dir=(self.recos_dir / origin_path.stem),
+                      reco_gt_path=self.recogt_dir / file_name,
+                      eval_dir=(self.eval_dir / origin_path.stem))
+            sub_col.add(sub)
+            
+        sub_col.col_reco(self.reco_prompt, models_names)
+        return sub_col
+
+    def eval(self, sub_col: SubCollection, eval_model_name: str, reco_models_names: List[str]) -> None:
+        sub_col.col_eval(self.eval_prompt, eval_model_name, reco_models_names)
+
+# =======================
+# VISUALIZATION & EXPORT
+# =======================
+
+ROOT_FOLDER = "pp_evals"
+REPORT_FOLDER = "pp_reports"
+
+if not os.path.exists(REPORT_FOLDER):
+    os.makedirs(REPORT_FOLDER)
+
+LLM_MAPPING = {
+    "flash-3": "3 Flash",
+    "pro-3": "3 Pro",
+    "haiku-4.5": "Haiku 4.5",
+    "sonnet-4.5": "Sonnet 4.5",
+    "opus-4.6": "opus 4.6",
 }
+
+CRITERIA_NAMES = {
+    1: "Precisions of categories",
+    2: "Recall of categories",
+    3: "Precisions of opinions",
+    4: "Recall of opinions"
+}
+
+CUSTOM_PALETTE = ["#1f77b4", "#d62728", "#2ca02c", "#ff7f0e", "#9467bd"]
+
+def get_file_info(filename):
+    filename_lower = filename.lower()
+    found_llm = "Unknown"
+    
+    matches = []
+    for pattern, display_name in LLM_MAPPING.items():
+        for match in re.finditer(re.escape(pattern), filename_lower):
+            matches.append({
+                'start': match.start(),
+                'len': len(pattern),
+                'name': display_name
+            })
+    
+    if matches:
+        matches.sort(key=lambda x: (x['start'], x['len']), reverse=True)
+        found_llm = matches[0]['name']
+
+    weight = 1
+    match_weight = re.search(r'\[(\d+)\]', filename)
+    if match_weight:
+        weight = int(match_weight.group(1))
+        
+    return found_llm, weight
+
+def get_valid_scores(text):
+    pattern = r"\[\s*(\d+(?:\.\d+)?)\s*,\s*(\d+(?:\.\d+)?)\s*,\s*(\d+(?:\.\d+)?)\s*,\s*(\d+(?:\.\d+)?)\s*,\s*(\d+(?:\.\d+)?)\s*\]"
+    matches = re.findall(pattern, text)
+    
+    for match in reversed(matches):
+        try:
+            full_scores = [float(n) for n in match]
+            if sum(full_scores) == 0:
+                continue 
+            if all(1 <= s <= 100 for s in full_scores):
+                return full_scores[1:] 
+        except ValueError:
+            continue
+    return []
+
+def calculate_weighted_avg(df):
+    if df.empty or df['Weight'].sum() == 0:
+        return 0
+    weighted_sum = (df['Score'] * df['Weight']).sum()
+    total_weights = df['Weight'].sum()
+    return weighted_sum / total_weights
+
+def plot_global_results(df):
+    plt.figure(figsize=(12, 7))
+    sns.set_theme(style="whitegrid")
+    
+    df_global = df.groupby('LLM', group_keys=False).apply(calculate_weighted_avg).reset_index(name='Final_Score')
+    df_global = df_global.sort_values('Final_Score', ascending=False)
+    
+    file_counts = df.groupby('LLM')['Source_File'].nunique()
+    print("\n--- Files successfully included per Model ---")
+    print(file_counts)
+    
+    ax = sns.barplot(
+        data=df_global, x='LLM', y='Final_Score', hue='LLM',
+        palette=CUSTOM_PALETTE, edgecolor='black', legend=False
+    )
+    
+    for container in ax.containers:
+        ax.bar_label(container, fmt='%.1f', padding=5, fontsize=12, fontweight='bold')
+
+    plt.title('AVERAGE GLOBAL SCORE (Out of 100)', fontsize=16, fontweight='bold', pad=20)
+    plt.xlabel('Model', fontsize=13)
+    plt.ylabel('Average Score (/100)', fontsize=13)
+    plt.ylim(0, 105)
+    plt.tight_layout()
+    
+    save_path = os.path.join(REPORT_FOLDER, "global_scores.png")
+    plt.savefig(save_path, dpi=300)
+    print(f"\n📊 Saved global chart to: {save_path}")
+    plt.show()
+
+def plot_criteria_results(df):
+    plt.figure(figsize=(14, 8))
+    sns.set_theme(style="whitegrid")
+    
+    df_crit = df.groupby(['Criteria_Index', 'LLM'], group_keys=False).apply(calculate_weighted_avg).reset_index(name='Final_Score')
+    
+    sns.barplot(
+        data=df_crit, x='Criteria_Index', y='Final_Score', hue='LLM',
+        palette=CUSTOM_PALETTE, edgecolor='black'
+    )
+    
+    plt.title('Performance by Category', fontsize=16, fontweight='bold', pad=20)
+    plt.xlabel('Evaluation Categories', fontsize=13)
+    plt.ylabel('Average Model Score (/100)', fontsize=13)
+    plt.ylim(0, 105)
+    plt.legend(bbox_to_anchor=(1.02, 1), loc='upper left', borderaxespad=0, title="Models")
+    plt.tight_layout()
+    
+    save_path = os.path.join(REPORT_FOLDER, "category_scores.png")
+    plt.savefig(save_path, dpi=300)
+    print(f"📊 Saved category chart to: {save_path}")
+    plt.show()
+
+# =======================
+# EXECUTION SCRIPT
+# =======================
+
+def generate_reports():
+    data = []
+    
+    if not os.path.exists(ROOT_FOLDER):
+        print(f"ERROR: Folder '{ROOT_FOLDER}' not found.")
+        print(f"Please create '{ROOT_FOLDER}' and add your subject folders inside.")
+        return
+
+    print(f"--- Analyzing folder: {ROOT_FOLDER} ---")
+
+    for root, dirs, files in os.walk(ROOT_FOLDER):
+        category = os.path.basename(root)
+        if root == ROOT_FOLDER: continue
+            
+        for file in files:
+            if not file.endswith(".txt"): continue
+                
+            path = os.path.join(root, file)
+            llm, weight = get_file_info(file)
+            
+            if llm == "Unknown":
+                continue
+                
+            try:
+                with open(path, 'r', encoding='utf-8', errors='ignore') as f:
+                    content = f.read()
+                
+                valid_scores = get_valid_scores(content)
+                
+                if len(valid_scores) == 4:
+                    for i, score in enumerate(valid_scores, start=1):
+                        data.append({
+                            'Source_File': file,
+                            'Category': category,
+                            'Criteria_Index': CRITERIA_NAMES.get(i, f"Criterion {i}"),
+                            'LLM': llm,
+                            'Score': score,
+                            'Weight': weight
+                        })
+                
+            except Exception as e:
+                print(f"  [ERROR] {file}: {e}")
+
+    df = pd.DataFrame(data)
+    
+    if df.empty:
+        print("\n❌ No valid data found.")
+        print("Ensure files have a bracket like [80, 90, 85, 90, 95] (1-100 range).")
+        return
+
+    print(f"\n✅ Success: {len(df)} individual scores extracted.")
+    
+    plot_global_results(df)
+    plot_criteria_results(df)
+
+
+if __name__ == "__main__":
+    # --- 1. Run Pipeline ---
+    base_dir = Path(r"C:\Users\julia\OneDrive - Technion\Documents\nlp-project\code")
+    reco_prompt_path = base_dir / "prompts" / "reco_prompts" / "pp_reco_prompt.txt"
+    eval_prompt_path = base_dir / "prompts" / "eval_prompt" / "eval_prompt.txt"
+    
+    try:
+        reco_prompt = load_text(reco_prompt_path)
+        eval_prompt = load_text(eval_prompt_path)
+        
+        pipe = LLMPipeline(base_dir=base_dir, reco_prompt=reco_prompt, eval_prompt=eval_prompt)
+        models_names = ["claude-haiku-4-5", "gemini-3-flash-preview", "gemini-3-pro-preview", "claude-sonnet-4-5", "claude-opus-4-6"]
+        
+        pipe.eval(pipe.reco(models_names), "gemini-3-pro-preview", models_names)
+    except FileNotFoundError as e:
+        print(f"File loading error during pipeline execution: {e}")
+        print("Skipping LLM calls. Proceeding to report generation if data exists.")
+
+    # --- 2. Generate Reports ---
+    generate_reports()
