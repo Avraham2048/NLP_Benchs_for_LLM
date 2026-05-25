@@ -122,7 +122,7 @@ To run this benchmark, you will need API keys for the respective models and a st
 
 ### **Running the Pipeline**
 
-Execute the provided Jupyter Notebook (nlp\_project.ipynb). The script will automatically:
+Execute the provided Python Script (nlp_project.py). The script will automatically:
 
 1. Load API keys from your .env file.  
 2. Iterate through the /origins dataset.  
