@@ -23,7 +23,7 @@ From an AI and Natural Language Processing perspective, it provides a rigorous e
 The project is built upon three main pillars:
 
 1. **The Benchmark Dataset:** A curated collection of original textual excerpts alongside an expert-annotated "Ground Truth" (GT) parsing for each.  
-2. **LLM Execution Pipeline:** A systematic process to prompt various state-of-the-art models (such as Claude 3.5 Sonnet, Gemini 1.5 Pro, etc.) to extract and format the debates from the raw texts.  
+2. **LLM Execution Pipeline:** A systematic process to prompt various state-of-the-art models (such as Claude Sonnet 3.7/4.5 , Haiku 4.5, Opus 4.6 , Gemini 3 Flash/Pro, etc.) to extract and format the debates from the raw texts.  
 3. **LLM-as-a-Judge Evaluation:** An automated grading system where an advanced LLM compares the generated outputs against our Ground Truth using a strict, multi-dimensional rubric.
 
 ## **📊 The Benchmark: Structure & Methodology**
